@@ -4,18 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JAIN FET Campus | Bangalore</title>
-    
-    <!-- Importing modern, elegant fonts -->
+    <meta name="description" content="JAIN FET Campus, Bangalore — Explore B.Tech programs in Computer Science, AI, Electronics, Mechanical, and Civil Engineering.">
+
+    <!-- Importing different, elegant fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@500;700;800&family=Playfair+Display:ital,wght@1,600&family=Space+Grotesk:wght@600&family=Outfit:wght@600&family=Cinzel:wght@600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Sora:wght@600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@600;700&family=Josefin+Sans:wght@600;700&family=Bitter:wght@600;700&family=Architects+Daughter&display=swap" rel="stylesheet">
+
     <style>
+        /* ===== Design System: Warm Light Theme ===== */
         :root {
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-main: #f8fafc;
-            --text-muted: #cbd5e1;
+            --bg-primary: #faf7f2;
+            --bg-secondary: #fff8ef;
+            --bg-card: #ffffff;
+            --text-heading: #1a1a2e;
+            --text-body: #4a4a68;
+            --text-muted: #8888a0;
+            --accent-1: #e36414;    /* Burnt Orange */
+            --accent-2: #5b21b6;   /* Deep Violet */
+            --accent-3: #0891b2;   /* Teal */
+            --accent-4: #b91c1c;   /* Crimson */
+            --accent-5: #15803d;   /* Forest Green */
+            --shadow-soft: 0 4px 24px rgba(26, 26, 46, 0.06);
+            --shadow-hover: 0 12px 40px rgba(26, 26, 46, 0.12);
+            --radius: 16px;
         }
 
         * {
@@ -24,293 +36,492 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f172a;
-            color: var(--text-main);
-            line-height: 1.6;
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-body);
+            line-height: 1.7;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
             overflow-x: hidden;
         }
 
-        /* Background Image with Premium Dark Overlay */
-        .bg-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-image: url('bg.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .bg-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-        }
-
-        /* Modern News Ticker for Updates */
-        .ticker-wrap {
-            background: rgba(0, 0, 0, 0.4);
-            border-bottom: 1px solid var(--glass-border);
-            padding: 10px 0;
+        /* ===== Animated Gradient Ticker (Requirement e) ===== */
+        .ticker-bar {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 12px 0;
             overflow: hidden;
             white-space: nowrap;
             position: relative;
-            z-index: 10;
             display: flex;
             align-items: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
 
-        .ticker-label {
-            background: #ef4444;
-            color: white;
-            padding: 4px 14px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
+        .ticker-badge {
+            background: var(--accent-1);
+            color: #fff;
+            padding: 5px 16px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            border-radius: 4px;
-            margin-left: 30px;
-            margin-right: 15px;
-            z-index: 2;
-            box-shadow: 0 2px 10px rgba(239, 68, 68, 0.3);
+            border-radius: 6px;
+            margin-left: 24px;
+            margin-right: 20px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 12px rgba(227, 100, 20, 0.4);
+            animation: badgePulse 2s ease-in-out infinite;
         }
 
-        .ticker {
+        @keyframes badgePulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .ticker-track {
             display: inline-block;
             white-space: nowrap;
-            padding-right: 100%;
-            animation: ticker 30s linear infinite;
+            animation: scroll 35s linear infinite;
         }
-        
-        .ticker:hover {
+
+        .ticker-track:hover {
             animation-play-state: paused;
         }
 
-        @keyframes ticker {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-100%, 0, 0); }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         .ticker-item {
             display: inline-block;
-            padding: 0 3rem;
-            font-size: 0.95rem;
+            padding: 0 2.5rem;
+            font-size: 0.9rem;
             color: #e2e8f0;
+            font-weight: 400;
         }
 
         .ticker-item strong {
-            color: #38bdf8;
+            color: #fbbf24;
+            font-weight: 700;
         }
 
-        /* Main Container Layout */
-        .container {
+        /* ===== Navigation Bar ===== */
+        .navbar {
+            background: var(--bg-card);
+            box-shadow: var(--shadow-soft);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-inner {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
-            width: 100%;
-            z-index: 1;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 100px 0 70px;
-            animation: fadeInDown 1s ease-out;
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
         }
 
-        .hero h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 5rem;
+        .navbar-logo {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--accent-1), #f97316);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Sora', sans-serif;
             font-weight: 800;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(227, 100, 20, 0.25);
+        }
+
+        .navbar-title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--text-heading);
+            letter-spacing: -0.3px;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .navbar-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.92rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .navbar-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--accent-1);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .navbar-links a:hover {
+            color: var(--text-heading);
+        }
+
+        .navbar-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== Hero Section (Requirement c) ===== */
+        .hero-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 32px 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            animation: heroEnter 1s ease-out;
+        }
+
+        @keyframes heroEnter {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-text {
+            position: relative;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(227, 100, 20, 0.1);
+            color: var(--accent-1);
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .hero-text h1 {
+            font-family: 'Sora', sans-serif;
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--text-heading);
             letter-spacing: -1.5px;
-            margin-bottom: 15px;
-            background: linear-gradient(to right, #ffffff, #94a3b8);
+            margin-bottom: 20px;
+        }
+
+        .hero-text h1 span {
+            background: linear-gradient(135deg, var(--accent-1), #f97316);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .hero .address {
-            font-size: 1.15rem;
+        .hero-address {
+            font-size: 1.05rem;
             color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-            font-weight: 300;
-            letter-spacing: 0.5px;
+            line-height: 1.8;
+            max-width: 420px;
         }
 
-        /* Courses Section */
-        .courses-section {
-            padding-bottom: 100px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 50px;
-            color: #ffffff;
-            position: relative;
+        .hero-address .pin-icon {
             display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
+            margin-right: 4px;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: #38bdf8;
-            border-radius: 2px;
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            margin-top: 36px;
         }
 
-        .courses-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+        .stat-item {
+            text-align: center;
         }
 
-        /* Glassmorphic Course Cards */
-        .course-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 35px;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: fadeInUp 0.8s ease-out backwards;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .course-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
-            pointer-events: none;
+        .stat-number {
+            font-family: 'Sora', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-heading);
         }
 
-        .course-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        /* Staggered entry animations */
-        .course-card:nth-child(1) { animation-delay: 0.1s; }
-        .course-card:nth-child(2) { animation-delay: 0.2s; }
-        .course-card:nth-child(3) { animation-delay: 0.3s; }
-        .course-card:nth-child(4) { animation-delay: 0.4s; }
-        .course-card:nth-child(5) { animation-delay: 0.5s; }
-
-        .course-card p {
+        .stat-label {
+            font-size: 0.82rem;
             color: var(--text-muted);
-            font-size: 1rem;
-            margin-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        /* Hero Image Side */
+        .hero-visual {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+            aspect-ratio: 4 / 3;
+        }
+
+        .hero-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-visual-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px;
+            background: linear-gradient(to top, rgba(26, 26, 46, 0.7), transparent);
+            color: #fff;
+            font-family: 'Sora', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* ===== Divider ===== */
+        .section-divider {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .section-divider hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #d4c5b0, transparent);
+        }
+
+        /* ===== Courses Section (Requirement d) ===== */
+        .programs-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 32px 100px;
+        }
+
+        .programs-header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeUp 0.8s ease-out;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .programs-header h2 {
+            font-family: 'Sora', sans-serif;
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: var(--text-heading);
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .programs-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        /* Course Cards — Left-border accent style */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 28px;
+        }
+
+        .program-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 32px 32px 32px 36px;
+            border-left: 5px solid transparent;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            animation: cardEnter 0.7s ease-out backwards;
+        }
+
+        .program-card:nth-child(1) { animation-delay: 0.1s; }
+        .program-card:nth-child(2) { animation-delay: 0.2s; }
+        .program-card:nth-child(3) { animation-delay: 0.3s; }
+        .program-card:nth-child(4) { animation-delay: 0.4s; }
+        .program-card:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes cardEnter {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .program-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .program-card .card-number {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-family: 'Sora', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 800;
+            opacity: 0.06;
+            color: var(--text-heading);
+            line-height: 1;
+        }
+
+        .program-card p {
+            color: var(--text-body);
+            font-size: 0.95rem;
+            margin-top: 14px;
+            line-height: 1.7;
         }
 
         /* 
            Requirement (d): Different color, style, and typeface for each course.
-           Implemented using premium Google Fonts and a cohesive vibrant color palette.
+           Each card has a unique left-border color and a unique heading font.
         */
-        
-        /* 1. Computer Science */
-        .c-cse h3 {
-            color: #38bdf8; /* Sky Blue */
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.6rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
 
-        /* 2. Artificial Intelligence */
-        .c-ai h3 {
-            color: #a78bfa; /* Purple */
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.7rem;
-            font-weight: 600;
+        /* 1. Computer Science — Burnt Orange + Raleway */
+        .card-cse {
+            border-left-color: var(--accent-1);
         }
-
-        /* 3. Electronics & Communication */
-        .c-ece h3 {
-            color: #f472b6; /* Pink */
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1.8rem;
-        }
-
-        /* 4. Mechanical Engineering */
-        .c-mech h3 {
-            color: #fbbf24; /* Amber */
-            font-family: 'Cinzel', serif;
-            font-weight: 600;
-            font-size: 1.6rem;
+        .card-cse h3 {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 700;
+            font-size: 1.35rem;
+            color: var(--accent-1);
             letter-spacing: 0.5px;
         }
 
-        /* 5. Civil Engineering */
-        .c-civil h3 {
-            color: #34d399; /* Emerald */
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            text-decoration: underline;
-            text-decoration-color: rgba(52, 211, 153, 0.4);
-            text-decoration-thickness: 3px;
+        /* 2. Artificial Intelligence — Deep Violet + Libre Baskerville (Serif) */
+        .card-ai {
+            border-left-color: var(--accent-2);
+        }
+        .card-ai h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--accent-2);
+        }
+
+        /* 3. Electronics & Communication — Teal + Josefin Sans */
+        .card-ece {
+            border-left-color: var(--accent-3);
+        }
+        .card-ece h3 {
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: 700;
+            font-size: 1.45rem;
+            color: var(--accent-3);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* 4. Mechanical Engineering — Crimson + Bitter (Slab Serif) */
+        .card-mech {
+            border-left-color: var(--accent-4);
+        }
+        .card-mech h3 {
+            font-family: 'Bitter', serif;
+            font-weight: 700;
+            font-size: 1.35rem;
+            color: var(--accent-4);
+        }
+
+        /* 5. Civil Engineering — Forest Green + Architects Daughter (Handwritten) */
+        .card-civil {
+            border-left-color: var(--accent-5);
+        }
+        .card-civil h3 {
+            font-family: 'Architects Daughter', cursive;
+            font-weight: 400;
             font-size: 1.5rem;
+            color: var(--accent-5);
         }
 
-        /* Animations */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* ===== Footer ===== */
+        .footer {
+            background: #1a1a2e;
+            color: #a0a0b8;
+            text-align: center;
+            padding: 28px 32px;
+            font-size: 0.85rem;
+            letter-spacing: 0.3px;
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+        .footer strong {
+            color: #fbbf24;
         }
 
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3.5rem; }
-            .ticker-label { display: none; }
-            .hero { padding: 60px 0 40px; }
+        /* ===== Responsive ===== */
+        @media (max-width: 900px) {
+            .hero-section {
+                grid-template-columns: 1fr;
+                padding: 50px 20px 40px;
+                gap: 40px;
+            }
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar-links { display: none; }
+            .hero-text h1 { font-size: 2.2rem; }
+            .hero-stats { gap: 20px; }
+            .stat-number { font-size: 1.5rem; }
+            .ticker-badge { display: none; }
+            .programs-header h2 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Background Image with Overlay -->
-    <div class="bg-wrapper"></div>
-    <div class="bg-overlay"></div>
-
     <!-- Scrolling Text Ticker (Requirement e) -->
-    <div class="ticker-wrap">
-        <div class="ticker-label">LATEST UPDATES</div>
-        <div class="ticker">
+    <div class="ticker-bar" id="ticker">
+        <div class="ticker-badge">📢 Updates</div>
+        <div class="ticker-track">
+            <span class="ticker-item"><strong>Exams:</strong> Mid-Semester Examinations starting 15th October 2026</span>
+            <span class="ticker-item"><strong>Events:</strong> JAIN TechFest '26 Registration is now open! Join us on Nov 5th</span>
+            <span class="ticker-item"><strong>Placements:</strong> Campus Recruitment Drive for final year students commences next week</span>
+            <span class="ticker-item"><strong>Admissions:</strong> B.Tech batch of 2027 intake has officially begun online</span>
+            <!-- Duplicate for seamless loop -->
             <span class="ticker-item"><strong>Exams:</strong> Mid-Semester Examinations starting 15th October 2026</span>
             <span class="ticker-item"><strong>Events:</strong> JAIN TechFest '26 Registration is now open! Join us on Nov 5th</span>
             <span class="ticker-item"><strong>Placements:</strong> Campus Recruitment Drive for final year students commences next week</span>
@@ -318,50 +529,99 @@
         </div>
     </div>
 
-    <!-- Main Content -->
-    <main class="container">
-        
-        <!-- Header / College Name and Address (Requirement c) -->
-        <header class="hero">
-            <h1>JAIN FET CAMPUS</h1>
-            <p class="address">Jakkasandra Post, Kanakapura Taluk, Ramanagara District<br>Bengaluru - 562112, Karnataka, India</p>
-        </header>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-inner">
+            <a href="#" class="navbar-brand">
+                <div class="navbar-logo">J</div>
+                <span class="navbar-title">JAIN FET Campus</span>
+            </a>
+            <ul class="navbar-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#programs">Programs</a></li>
+            </ul>
+        </div>
+    </nav>
 
-        <!-- Courses Offered Section (Requirement d) -->
-        <section class="courses-section">
-            <h2 class="section-title">Academic Programs</h2>
-            
-            <div class="courses-grid">
-                
-                <div class="course-card c-cse">
-                    <h3>B.Tech Computer Science & Engineering</h3>
-                    <p>Pioneering the digital future through cutting-edge software development, advanced algorithms, and cloud computing systems.</p>
+    <!-- Hero Section (Requirement c: College Name & Address) -->
+    <section class="hero-section" id="hero">
+        <div class="hero-text">
+            <div class="hero-tag">🎓 Est. Bangalore</div>
+            <h1>JAIN <span>FET</span> Campus</h1>
+            <p class="hero-address">
+                <span class="pin-icon">📍</span> Jakkasandra Post, Kanakapura Taluk, Ramanagara District<br>
+                Bengaluru — 562112, Karnataka, India
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Programs</div>
                 </div>
-
-                <div class="course-card c-ai">
-                    <h3>B.Tech Artificial Intelligence</h3>
-                    <p>Shaping the next generation of intelligent systems, machine learning models, and complex data-driven solutions.</p>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Faculty</div>
                 </div>
-
-                <div class="course-card c-ece">
-                    <h3>B.Tech Electronics & Communication</h3>
-                    <p>Bridging the gap between hardware and software to create advanced communication networks and IoT systems.</p>
+                <div class="stat-item">
+                    <div class="stat-number">3K+</div>
+                    <div class="stat-label">Students</div>
                 </div>
-
-                <div class="course-card c-mech">
-                    <h3>B.Tech Mechanical Engineering</h3>
-                    <p>Innovating physical systems, from modern automotive design to robotics, thermal sciences, and sustainable energy.</p>
-                </div>
-
-                <div class="course-card c-civil">
-                    <h3>B.Tech Civil Engineering</h3>
-                    <p>Building the robust foundation of tomorrow's infrastructure with advanced structural design and smart urban planning.</p>
-                </div>
-
             </div>
-        </section>
+        </div>
+        <div class="hero-visual">
+            <img src="bg.jpg" alt="JAIN FET Campus Aerial View">
+            <div class="hero-visual-overlay">Campus View — Kanakapura Road</div>
+        </div>
+    </section>
 
-    </main>
+    <!-- Divider -->
+    <div class="section-divider"><hr></div>
+
+    <!-- Courses Section (Requirement d: 5 courses, each with different color, style, typeface) -->
+    <section class="programs-section" id="programs">
+        <div class="programs-header">
+            <h2>Academic Programs</h2>
+            <p>Explore our flagship B.Tech programs — each crafted to shape future leaders in engineering and technology.</p>
+        </div>
+
+        <div class="programs-grid">
+
+            <div class="program-card card-cse">
+                <span class="card-number">01</span>
+                <h3>B.Tech Computer Science & Engineering</h3>
+                <p>Pioneering the digital future through cutting-edge software development, advanced algorithms, and cloud computing systems.</p>
+            </div>
+
+            <div class="program-card card-ai">
+                <span class="card-number">02</span>
+                <h3>B.Tech Artificial Intelligence</h3>
+                <p>Shaping the next generation of intelligent systems, machine learning models, and complex data-driven solutions.</p>
+            </div>
+
+            <div class="program-card card-ece">
+                <span class="card-number">03</span>
+                <h3>B.Tech Electronics & Communication</h3>
+                <p>Bridging the gap between hardware and software to create advanced communication networks and IoT systems.</p>
+            </div>
+
+            <div class="program-card card-mech">
+                <span class="card-number">04</span>
+                <h3>B.Tech Mechanical Engineering</h3>
+                <p>Innovating physical systems, from modern automotive design to robotics, thermal sciences, and sustainable energy.</p>
+            </div>
+
+            <div class="program-card card-civil">
+                <span class="card-number">05</span>
+                <h3>B.Tech Civil Engineering</h3>
+                <p>Building the robust foundation of tomorrow's infrastructure with advanced structural design and smart urban planning.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        &copy; 2026 <strong>JAIN FET Campus</strong>, Bengaluru. All rights reserved.
+    </footer>
 
 </body>
 </html>
